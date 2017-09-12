@@ -23,10 +23,21 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + token);
 
+
+        if (token!=null) {
+            SettingPreferences.setStringValueInPref(this, SettingPreferences.REG_ID, token);
+        }
+
         // 생성등록된 토큰을 개인 앱서버에 보내 저장해 두었다가 추가 뭔가를 하고 싶으면 할 수 있도록 한다.
         sendRegistrationToServer(token);
-
     }
+
+
+
+
+
+
+
 
     private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
